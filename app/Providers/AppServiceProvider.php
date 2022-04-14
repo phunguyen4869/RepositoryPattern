@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Repositories\Post\PostRepository;
 use Illuminate\Support\ServiceProvider;
+use App\Repositories\Post\PostRepositoryInterface;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,7 +15,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->singleton(
+            PostRepositoryInterface::class,
+            PostRepository::class
+        );
     }
 
     /**
