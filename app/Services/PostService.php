@@ -5,6 +5,6 @@ class PostService
 {
     public function getPostsCount($data)
     {
-
+        return count($data);
     }
 }
