@@ -3,17 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Services\PostService;
 use App\Http\Controllers\Controller;
-use App\Repositories\Post\PostRepositoryInterface;
 use App\Repositories\Post\PostRepository;
+use App\Repositories\Post\PostRepositoryInterface;
 
 class PostController extends Controller
 {
     protected $postRepository;
+    protected $postService;
 
-    public function __construct(PostRepositoryInterface $postRepository)
+    public function __construct(PostRepositoryInterface $postRepository, PostService $postService)
     {
         $this->postRepository = $postRepository;
+        $this->postService = $postService;
     }
 
     /**
@@ -23,8 +26,10 @@ class PostController extends Controller
      */
     public function index()
     {
-        // $posts = $this->postRepository->getAll();
-        $posts = $this->postRepository->getPostPerPage();
+        $posts = $this->postRepository->getAll();
+        // $posts = $this->postRepository->getPostPerPage();
+        $postsCount = $this->postService->getPostsCount($posts);
+
         dd($posts);
     }
 

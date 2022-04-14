@@ -19,6 +19,15 @@ class PostRepository extends EloquentRepository implements PostRepositoryInterfa
     }
 
     /**
+     * Get all posts
+     * @return mixed
+     */
+    public function getAll()
+    {
+        return $this->_model->all();
+    }
+
+    /**
      * Get 10 posts per page
      * @return mixed
      */
